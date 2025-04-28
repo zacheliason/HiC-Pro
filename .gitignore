@@ -3,3 +3,15 @@ data/
 HiC-Pro_2.11.3-beta/
 bowtie2-2.2.4/
 results/
+MboI_resfrag_hg38.bed
+MboI_resfrag_mm10.bed
+annotation/hg38.chrom.sizes.txt
+config-system.txt
+genomes/
+hic_config.txt
+mm10.chrom.sizes.txt
+mm10.chromAlias.txt
+output/
+rawdata/
+scripts/build_matrix
+scripts/cutsite_trimming

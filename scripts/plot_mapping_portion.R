@@ -131,9 +131,23 @@ ploMapStat <- function(mat, sampleName="", tag="", legend=TRUE){
 ## plotMappingPortion.R
 ##
 ####################################
+
 ## Get Mapping stat files for all fastq files of a given sample
-allmapstat_r1 <- list.files(path=bwtDir, pattern=paste0("^[[:print:]]*",r1tag,"[[:print:]]*\\.mapstat$"), full.names=TRUE)
-allmapstat_r2 <- list.files(path=bwtDir, pattern=paste0("^[[:print:]]*",r2tag,"[[:print:]]*\\.mapstat$"), full.names=TRUE)
+# allmapstat_r1 <- list.files(path=bwtDir, pattern=paste0("^[[:print:]]*",r1tag,"[[:print:]]*\\.mapstat$"), full.names=TRUE)
+# allmapstat_r2 <- list.files(path=bwtDir, pattern=paste0("^[[:print:]]*",r2tag,"[[:print:]]*\\.mapstat$"), full.names=TRUE)
+
+allmapstat_r1 <- list.files(path = bwtDir,
+                           pattern = paste0("^[[:print:]]*",
+                                           gsub("\\.fastq|\\.gz", "", r1tag),
+                                           "_[[:print:]]*\\.mapstat$"),
+                           full.names = TRUE)
+
+allmapstat_r2 <- list.files(path = bwtDir,
+                           pattern = paste0("^[[:print:]]*",
+                                           gsub("\\.fastq|\\.gz", "", r2tag),
+                                           "_[[:print:]]*\\.mapstat$"),
+                           full.names = TRUE)
+
 stopifnot(length(allmapstat_r1)>0 && length(allmapstat_r2)>0)
 print(allmapstat_r1)
 print(allmapstat_r2)
@@ -157,4 +171,3 @@ p2 <- ploMapStat(mat_r2, sampleName=sampleName, tag="R2", legend=FALSE)
 pdf(file.path(picDir, paste0("plotMapping_",sampleName,".pdf")), width=7, height=4)
 multiplot(p1, p2, cols=2)
 dev.off()
-
